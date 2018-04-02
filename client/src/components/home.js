@@ -15,7 +15,7 @@ import {
 
 const Home = props => (
   <div>
-    <h1>Home</h1> {props.giph} id {props.id}
+    <h1>My Giphy Comic</h1> {/*{props.giph} id {props.id}*/}
 
       <Search searchGiphs={props.searchGiphs} />
 {props.editingCard}

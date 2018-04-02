@@ -8,24 +8,26 @@ export default function Editing(props) {
   if (isEditing)
   {
     return (
-      <div>
-        <button onClick={()=>props.save(props.editingCard, props.textBox, props.slider, props.textSelect)}>Save</button>
+      <div className='toolBox'>
+
         <br/>
-          <label>
-            Giph Text:
+          <label className='tool'>
+            <span>Cell Text:</span>
             <input id="textBox" type="text" onChange={props.handleChange} />
           </label>
 
-          <div class="slidecontainer">
+          <div className="slidecontainer tool">
+            <span>Cell Width: {props.slider}</span>
             <input type="range" min="200" max="1000" step="100" class="slider" id="slider" onChange={props.handleChange}/>
-            <span>{props.slider}</span>
           </div>
 
-          <select id="textSelect" name="textLocation" onChange={props.handleChange}>
+          <select className='tool' id="textSelect" name="textLocation" onChange={props.handleChange}>
             <option value="text top-left">Top Left</option>
             <option value="text bottom-right">Bottom right</option>
             {/*<option value="speech-bubble">Speech Bubble</option> */}
           </select>
+
+          <button className='tool' onClick={()=>props.save(props.editingCard, props.textBox, props.slider, props.textSelect)}>Save</button>
 
       {/*  <Search searchGiphs={props.searchGiphs} /> */}
         {props.giphs.map((g, i) => {
@@ -49,5 +51,5 @@ export default function Editing(props) {
     </div>
   )
   }
-  return <button onClick={()=>props.edit(props.editingCard)}>{props.butName}</button>
+  return <button className="toolBox tool" onClick={()=>props.edit(props.editingCard)}>{props.butName}</button>
 }

@@ -93,7 +93,7 @@ export default class Example extends React.Component {
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
-      placeholder: 'Type a programming language',
+      placeholder: 'Search for a gif',
       value,
       onChange: this.onChange
     };
