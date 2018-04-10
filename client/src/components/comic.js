@@ -10,23 +10,32 @@ import {
   save,
   edit,
   selectCard,
-  handleChange
+  handleChange,
+  saveComic
 } from '../reducers/counter';
 
-const Home = props => (
-  <div>
-    <h1>My Giphy Comic</h1> {/*{props.giph} id {props.id}*/}
+class Comic extends React.Component
+{
+  render()
+  {
+    const props = this.props;
+    return ( <div>
+      <h1>My Giphy Comic</h1> {/*{props.giph} id {props.id}*/}
 
-      <Search searchGiphs={props.searchGiphs} />
-{props.editingCard}
-      <Editing {...props} butName={ (props.editingCard === null) ? 'New Cell' : 'edit' }/>
+        <Search searchGiphs={props.searchGiphs} />
+  {props.editingCard}
+        <Editing {...props} butName={ (props.editingCard === null) ? 'New Cell' : 'edit' }/>
 
-      <Cards {...props}/>
+        <Cards {...props}/>
+
+        <button onClick={()=>saveComic(props, this)}>Save</button>
 
 
 
-  </div>
-);
+    </div> );
+  }
+}
+//const Comic = props => (
 
 const mapStateToProps = state => (
   {
@@ -38,7 +47,8 @@ const mapStateToProps = state => (
   editingCard: state.counter.editingCard,
   textBox: state.counter.textBox,
   slider: state.counter.slider,
-  textSelect: state.counter.textSelect
+  textSelect: state.counter.textSelect,
+  auth: state.auth
 });
 
 const mapDispatchToProps = dispatch =>
@@ -49,9 +59,10 @@ const mapDispatchToProps = dispatch =>
       save,
       edit,
       selectCard,
-      handleChange
+      handleChange,
+      saveComic
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Comic);

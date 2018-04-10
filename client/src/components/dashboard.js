@@ -30,7 +30,7 @@ export class Dashboard extends React.Component {
                 <br />
                 <Link to="/add">Add Entry</Link>
                 <Add />
-                <Link to="/home">Home</Link>
+                <Link to="/comic">Create Comic</Link>
             </div>
         );
     }

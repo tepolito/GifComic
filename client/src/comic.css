@@ -36,6 +36,15 @@ html, body {
   transform:skew(-15deg);
 }
 
+.top-left-landing {
+  left:-6px;
+  position:relative;
+  top:-2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transform:skew(-15deg);
+}
+
 .bottom-right {
   bottom:-2px;
   position:absolute;

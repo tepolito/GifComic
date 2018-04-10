@@ -1,5 +1,4 @@
 const {User} = require('../models/users');
-const Entry  = require('../models/entries');
 
 // Post to register a new user
 exports.register = function(req, res, next) {
@@ -136,4 +135,3 @@ exports.addEntry = function(req, res, next) {
        data: 'rosebud'
     });
 };
-

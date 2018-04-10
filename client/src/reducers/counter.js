@@ -1,3 +1,6 @@
+import {API_BASE_URL} from '../config';
+import {normalizeResponseErrors} from '../actions/utils';
+
 var giphy = require('giphy-api')('rNq8FtmogPXR2ZuiSwncKoSAcTbDVQii');
 
 const initialState = {
@@ -136,4 +139,31 @@ export const handleChange = (event) =>
       console.log(event.target);
       dispatch(obj);
   }
+}
+
+export const saveComic = (props) =>
+{
+
+  const cards = props.cards
+  const authToken = props.auth.authToken;
+  return fetch(`${API_BASE_URL}/comic`, {
+    method: 'POST',
+    body: JSON.stringify({cards: cards}),
+    headers: {
+        // Provide our auth token as credentials
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+    }
+  })
+      .then(res => normalizeResponseErrors(res))
+      .then(res => res.json())
+      .then(({data}) => {
+        console.log(data);
+        //  dispatch(fetchProtectedDataSuccess(data)))
+      })
+      .catch(err => {
+        console.log(err);
+        //  dispatch(fetchProtectedDataError(err));
+      });
 }

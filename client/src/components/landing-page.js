@@ -13,10 +13,12 @@ export function LandingPage(props) {
     return (
         <div className="landing-page">
             <h2>Welcome to Giphy Comic!</h2>
-            <p className='text bottom-right'> Giphy Comic is a site that allows you to create your very own comics using the giphy.com api.
+            <div className='comic'>
+              <p className='text top-left-landing'> Giphy Comic is a site that allows you to create your very own comics using the giphy.com api.
                 It is super easy to use! Once you register with an email and password, you will be taken to the comic
                 creation page. From here you will be able to search gifs to use in your comic, write text for each cell,
                  and decide on the width for each. Sign up or login and get started creating!</p>
+             </div>
             <LoginForm />
             <Link to="/register">Register</Link>
         </div>
