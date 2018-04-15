@@ -27,4 +27,8 @@ router.post('/refresh', passport.authenticate('jwt', {session: false}), AuthCont
 
 router.post('/comic', [passport.authenticate('jwt', {session: false}), jsonParser],ComicController.addComic);
 
+router.get('/getComics', [passport.authenticate('jwt', {session: false}), jsonParser],ComicController.getComics);
+
+router.get('/comic/:id', [passport.authenticate('jwt', {session: false}), jsonParser],ComicController.getComic);
+
 module.exports = {router, basicStrategy, jwtStrategy};

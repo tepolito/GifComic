@@ -14,3 +14,7 @@ h1, .header-bar{
   margin-bottom: 10px;
   margin-right: 10px;
 }
+
+.skew{
+  transform: skew(-15deg);
+}

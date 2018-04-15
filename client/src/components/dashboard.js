@@ -12,6 +12,8 @@ export class Dashboard extends React.Component {
         this.props.dispatch(fetchProtectedData());
     }
 
+
+
     render() {
         // Only visible to logged in users
         if (!this.props.loggedIn) {
@@ -24,13 +26,17 @@ export class Dashboard extends React.Component {
                 <div className="dashboard-username">
                     Email: {this.props.email}
                 </div>
-                <div className="dashboard-protected-data">
-                    Protected data: {this.props.protectedData}
-                </div>
+
                 <br />
                 <Link to="/add">Add Entry</Link>
                 <Add />
                 <Link to="/comic">Create Comic</Link>
+
+                  <ul>
+                    {this.props.protectedData.map((d, index) => <li key={d._id}>
+                      <Link to={{ pathname: `/comic/${d._id}`, name:d._id }}>comic {index}</Link>
+                    </li>)}
+                  </ul>
             </div>
         );
     }

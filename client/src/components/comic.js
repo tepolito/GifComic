@@ -3,7 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Search from './search.js';
 import Cards from './cards';
+import CardsViewer from './cardsViewer';
 import Editing from './editing';
+import {getComic} from '../actions/protected-data';
 import {
   searchGiphs,
   selectGiph,
@@ -16,11 +18,17 @@ import {
 
 class Comic extends React.Component
 {
+  componentDidMount()
+  {
+    console.log(this);
+    this.props.getComic(this.props.match.params.id);
+      //this.props.dispatch(getComic());
+  }
   render()
   {
     const props = this.props;
     return ( <div>
-      <h1>My Giphy Comic</h1> {/*{props.giph} id {props.id}*/}
+      <h1>My Giphy Comic</h1>
 
         <Search searchGiphs={props.searchGiphs} />
   {props.editingCard}
@@ -28,7 +36,10 @@ class Comic extends React.Component
 
         <Cards {...props}/>
 
-        <button onClick={()=>saveComic(props, this)}>Save</button>
+        <CardsViewer {...props}/>
+
+
+        <button className="text skew" onClick={()=>saveComic(props, this)}>Save</button>
 
 
 
@@ -48,7 +59,8 @@ const mapStateToProps = state => (
   textBox: state.counter.textBox,
   slider: state.counter.slider,
   textSelect: state.counter.textSelect,
-  auth: state.auth
+  auth: state.auth,
+  protectedData: state.protectedData.cards
 });
 
 const mapDispatchToProps = dispatch =>
@@ -60,7 +72,8 @@ const mapDispatchToProps = dispatch =>
       edit,
       selectCard,
       handleChange,
-      saveComic
+      saveComic,
+      getComic
     },
     dispatch
   );
