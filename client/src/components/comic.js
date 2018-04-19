@@ -13,7 +13,8 @@ import {
   edit,
   selectCard,
   handleChange,
-  saveComic
+  saveNewComic,
+  saveUpdateComic
 } from '../reducers/counter';
 
 class Comic extends React.Component
@@ -39,7 +40,8 @@ class Comic extends React.Component
         <CardsViewer {...props}/>
 
 
-        <button className="text skew" onClick={()=>saveComic(props, this)}>Save Comic</button>
+        <button className="text skew" onClick={()=>saveNewComic(props, this)}>Save Comic New</button>
+        <button className="text skew" onClick={()=>saveUpdateComic(props, this.props.match.params.id)}>Save Comic Update</button>
 
 
 
@@ -72,7 +74,8 @@ const mapDispatchToProps = dispatch =>
       edit,
       selectCard,
       handleChange,
-      saveComic,
+      saveNewComic,
+      saveUpdateComic,
       getComic
     },
     dispatch

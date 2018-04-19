@@ -27,6 +27,9 @@ router.post('/refresh', passport.authenticate('jwt', {session: false}), AuthCont
 
 router.post('/comic', [passport.authenticate('jwt', {session: false}), jsonParser],ComicController.addComic);
 
+//save an updated comic not a new one
+router.post('/comic/:id', [passport.authenticate('jwt', {session: false}), jsonParser],ComicController.updateComic);
+
 router.get('/getComics', [passport.authenticate('jwt', {session: false}), jsonParser],ComicController.getComics);
 
 router.get('/comic/:id', [passport.authenticate('jwt', {session: false}), jsonParser],ComicController.getComic);

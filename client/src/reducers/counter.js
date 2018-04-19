@@ -141,12 +141,40 @@ export const handleChange = (event) =>
   }
 }
 
-export const saveComic = (props) =>
+export const saveNewComic = (props) =>
 {
 
   const cards = props.cards
   const authToken = props.auth.authToken;
   return fetch(`${API_BASE_URL}/comic`, {
+    method: 'POST',
+    body: JSON.stringify({cards: cards}),
+    headers: {
+        // Provide our auth token as credentials
+        Authorization: `Bearer ${authToken}`,
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+    }
+  })
+      .then(res => normalizeResponseErrors(res))
+      .then(res => res.json())
+      .then(({data}) => {
+        console.log(data);
+        //  dispatch(fetchProtectedDataSuccess(data)))
+      })
+      .catch(err => {
+        console.log(err);
+        //  dispatch(fetchProtectedDataError(err));
+      });
+}
+
+export const saveUpdateComic = (props, id) =>
+{
+  console.log('params id', id)
+  const cards = props.cards
+  console.log('props.cards is', props.cards)
+  const authToken = props.auth.authToken;
+  return fetch(`${API_BASE_URL}/comic/${id}`, {
     method: 'POST',
     body: JSON.stringify({cards: cards}),
     headers: {
