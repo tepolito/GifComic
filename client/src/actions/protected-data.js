@@ -13,7 +13,14 @@ export const fetchProtectedDataError = error => ({
     error
 });
 
+export const GET_COMIC_SUCCESS = 'GET_COMIC_SUCCESS';
+export const getComicSuccess = data => ({
+    type: GET_COMIC_SUCCESS,
+    data
+});
+
 export const fetchProtectedData = () => (dispatch, getState) => {
+  console.log('fetchProtectedData called')
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/getComics`, {
         method: 'GET',
@@ -31,6 +38,7 @@ export const fetchProtectedData = () => (dispatch, getState) => {
 };
 
 export const getComic = (id) => (dispatch, getState) => {
+  console.log('getComic called', id)
     const authToken = getState().auth.authToken;
     return fetch(`${API_BASE_URL}/comic/${id}`, {
         method: 'GET',
@@ -41,7 +49,7 @@ export const getComic = (id) => (dispatch, getState) => {
     })
         .then(res => normalizeResponseErrors(res))
         .then(res => res.json())
-        .then(({data}) => dispatch(fetchProtectedDataSuccess(data)))
+        .then(({data}) => dispatch(getComicSuccess(data)))
         .catch(err => {
             dispatch(fetchProtectedDataError(err));
         });

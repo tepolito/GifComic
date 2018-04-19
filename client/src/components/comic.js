@@ -39,7 +39,7 @@ class Comic extends React.Component
         <CardsViewer {...props}/>
 
 
-        <button className="text skew" onClick={()=>saveComic(props, this)}>Save</button>
+        <button className="text skew" onClick={()=>saveComic(props, this)}>Save Comic</button>
 
 
 
