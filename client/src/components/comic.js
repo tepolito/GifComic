@@ -37,11 +37,12 @@ class Comic extends React.Component
 
         <Cards {...props}/>
 
-        <CardsViewer {...props}/>
+        {/*<CardsViewer {...props}/>*/}
+
+        {this.props.match.params.id ? <button className="text skew" onClick={()=>saveUpdateComic(props, this.props.match.params.id)}>Save Comic Update</button>
+      : <button className="text skew" onClick={()=>saveNewComic(props, this)}>Save Comic New</button>}
 
 
-        <button className="text skew" onClick={()=>saveNewComic(props, this)}>Save Comic New</button>
-        <button className="text skew" onClick={()=>saveUpdateComic(props, this.props.match.params.id)}>Save Comic Update</button>
 
 
 
@@ -62,7 +63,8 @@ const mapStateToProps = state => (
   slider: state.counter.slider,
   textSelect: state.counter.textSelect,
   auth: state.auth,
-  protectedData: state.protectedData.cards
+  protectedData: state.protectedData.cards,
+  iframeSelect: state.counter.iframeSelect
 });
 
 const mapDispatchToProps = dispatch =>

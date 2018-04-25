@@ -11,9 +11,9 @@ exports.addComic = function(req, res, next) {
 };
 
 exports.updateComic = function(req, res, next) {
-    console.log('updating comic', req.body);
+    console.log('updating comic', req.body, req.params);
 
-    Comic.updateOne({_id: req._id}, {$set: {cards: req.body.cards}}, ()=>(console.log('update looks like', req.body)));
+    Comic.updateOne({_id: req.params.id}, {$set: {cards: req.body.cards}}, (doc,err)=>(console.log(doc, err)));
     return res.json({
        data: 'updated'
     });

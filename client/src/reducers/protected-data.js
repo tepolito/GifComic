@@ -23,7 +23,7 @@ export default function reducer(state = initialState, action) {
         });
     } else if (action.type === GET_COMIC_SUCCESS){
       console.log('getComic reducer', state, action)
-      return Object.assign({}, state,{cards: action.data.cards});
+      return Object.assign({}, state, {cards: action.data.cards});
     }
     return state;
 }

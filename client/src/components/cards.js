@@ -12,10 +12,21 @@ export default function Cards(props) {
     return (
       <article className="comic">
       {props.cards.map((g, i) => {
+
+        let style = {
+          flexBasis: Number(g.slider)
+        }
+
+        if(g.iframeSelect == 'cover')
+        {
+          style.width = '177.7777777vh';
+          style.height = '56vh';
+          style.top = '100%';
+        }
         console.log(g);
-          let num = (Math.floor(Math.random() * 6) + 1) * 100
+
         return (
-          <div onClick={()=>props.selectCard(i)} key={i} className='panel' style={{flexBasis: Number(g.slider)}}>
+          <div onClick={()=>props.selectCard(i)} key={i} className='panel' style={style}>
         {/*  {g.id} slider value{g.slider} */}
 
             <div className="container">

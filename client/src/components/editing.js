@@ -27,7 +27,13 @@ export default function Editing(props) {
             {/*<option value="speech-bubble">Speech Bubble</option> */}
           </select>
 
-          <button className='tool text skew' onClick={()=>props.save(props.editingCard, props.textBox, props.slider, props.textSelect)}>Save</button>
+          <select className='tool' id="iframeSelect" name="iframeSize" onChange={props.handleChange}>
+            <option value="cover">Cover</option>
+            <option value="contain">Contain</option>
+            {/*<option value="speech-bubble">Speech Bubble</option> */}
+          </select>
+
+          <button className='tool text skew' onClick={()=>props.save(props.editingCard, props.textBox, props.slider, props.textSelect, props.iframeSelect)}>Save</button>
 
       {/*  <Search searchGiphs={props.searchGiphs} /> */}
         {props.giphs.map((g, i) => {

@@ -15,7 +15,7 @@ export const fetchProtectedDataError = error => ({
 
 export const GET_COMIC_SUCCESS = 'GET_COMIC_SUCCESS';
 export const getComicSuccess = data => ({
-    type: GET_COMIC_SUCCESS,
+    type: 'GET_COMIC_SUCCESS',
     data
 });
 

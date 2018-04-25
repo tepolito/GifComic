@@ -12,7 +12,8 @@ const initialState = {
   id: 0,
   editingCard: null,
   slider: 200,
-  textSelect: 'text top-left'
+  textSelect: 'text top-left',
+  iframeSelect: 'contain'
 };
 
 export default (state = initialState, action) => {
@@ -38,12 +39,12 @@ export default (state = initialState, action) => {
     if(newCards[action.id])
     {
       newCards[action.id] = {giph:state.giph, id:state.id, textBox:state.textBox, slider:state.slider,
-        textSelect: state.textSelect}
+        textSelect: state.textSelect, iframeSelect: state.iframeSelect}
     }
     else
     {
       newCards.push({giph:state.giph, id:state.id, textBox:state.textBox, slider:state.slider,
-      textSelect: state.textSelect})
+      textSelect: state.textSelect, iframeSelect: state.iframeSelect})
     }
         return {
           ...state,
@@ -69,9 +70,17 @@ export default (state = initialState, action) => {
     case 'HANDLE_CHANGE':
     delete action.type;
 
-    let thing = Object.assign(state,action);
+    let thing = Object.assign(state, action);
     console.log(thing);
         return {...thing};
+
+    case 'GET_COMIC_SUCCESS':
+    console.log(state, action)
+
+    return{
+      ...state,
+      cards: action.data.cards
+    }
 
 
     default:
@@ -171,8 +180,10 @@ export const saveNewComic = (props) =>
 export const saveUpdateComic = (props, id) =>
 {
   console.log('params id', id)
-  const cards = props.cards
-  console.log('props.cards is', props.cards)
+  console.log('first cards', cards)
+//  const cards = [...props.cards, ...props.protectedData]
+const cards = [...props.cards]
+  console.log('cards is', cards)
   const authToken = props.auth.authToken;
   return fetch(`${API_BASE_URL}/comic/${id}`, {
     method: 'POST',
